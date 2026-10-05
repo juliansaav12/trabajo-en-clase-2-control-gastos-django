@@ -1,0 +1,86 @@
+.tarjeta-detalle {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 450px;
+    margin: 20px auto;
+    border-radius: 6px;
+}
+
+.tarjeta-detalle h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.tarjeta-detalle hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 10px 0 15px 0;
+}
+
+.tarjeta-detalle p {
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+.alerta-borrar {
+    text-align: center;
+    border-top: 4px solid #d32f2f;
+}
+
+.texto-aviso {
+    color: #777;
+    font-size: 13px;
+}
+
+.acciones-detalle {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.acciones-detalle div {
+    display: flex;
+    gap: 8px;
+}
+
+.centrado {
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-azul, .btn-rojo, .btn-cancelar {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.btn-azul {
+    background-color: #1976d2;
+    color: white;
+}
+
+.btn-rojo {
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-cancelar {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.badge {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.pagado { background-color: #e8f5e9; color: #2e7d32; }
+.pendiente { background-color: #fffde7; color: #f57f17; }

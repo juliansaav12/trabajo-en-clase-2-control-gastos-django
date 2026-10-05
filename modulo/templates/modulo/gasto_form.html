@@ -1,0 +1,22 @@
+{% extends 'modulo/base.html' %}
+{% load static %}
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'modulo/css/formulario.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="tarjeta-form">
+    <h2>{{ titulo }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="acciones">
+            <button type="submit" class="btn-guardar">Guardar</button>
+            <a href="{% url 'lista_gastos' %}" class="btn-cancelar">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

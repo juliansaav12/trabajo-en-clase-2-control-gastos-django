@@ -1,0 +1,22 @@
+{% extends 'modulo/base.html' %}
+{% load static %}
+
+{% block title %}Eliminar Gasto{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'modulo/css/detalle.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="tarjeta-detalle alerta-borrar">
+    <h2>¿Eliminar este gasto?</h2>
+    <p>Estás a punto de borrar: <strong>"{{ gasto.descripcion }}"</strong> (${{ gasto.monto }}).</p>
+    <p class="texto-aviso">Esta acción no se puede deshacer.</p>
+
+    <form method="post" class="acciones-detalle centrado">
+        {% csrf_token %}
+        <a href="{% url 'lista_gastos' %}" class="btn-cancelar">Cancelar</a>
+        <button type="submit" class="btn-rojo">Sí, eliminar</button>
+    </form>
+</div>
+{% endblock %}

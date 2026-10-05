@@ -1,0 +1,89 @@
+{% extends 'modulo/base.html' %}
+{% load static %}
+
+{% block title %}Mis Gastos{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'modulo/css/lista.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="tarjeta">
+    <div class="cabecera">
+        <h2>Historial de Gastos</h2>
+        <a href="{% url 'crear_gasto' %}" class="btn-nuevo">+ Nuevo Gasto</a>
+    </div>
+
+    <form method="get" class="filtros">
+        <input type="text" name="q" value="{{ q }}" placeholder="Buscar por descripción...">
+        <select name="categoria">
+            <option value="">Todas las categorías</option>
+            {% for clave, nombre in categorias %}
+                <option value="{{ clave }}" {% if categoria_filtro == clave %}selected{% endif %}>{{ nombre }}</option>
+            {% endfor %}
+        </select>
+        <select name="pagado">
+            <option value="">Todos los estados</option>
+            <option value="True" {% if pagado_filtro == 'True' %}selected{% endif %}>Pagado</option>
+            <option value="False" {% if pagado_filtro == 'False' %}selected{% endif %}>Pendiente</option>
+        </select>
+        <button type="submit" class="btn-azul">Filtrar</button>
+        {% if q or categoria_filtro or pagado_filtro %}
+            <a href="{% url 'lista_gastos' %}" class="btn-cancelar">Limpiar</a>
+        {% endif %}
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Fecha</th>
+                <th>Monto</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for gasto in page_obj %}
+            <tr>
+                <td><strong>{{ gasto.descripcion }}</strong></td>
+                <td>{{ gasto.get_categoria_display }}</td>
+                <td>{{ gasto.fecha|date:"d/m/Y" }}</td>
+                <td class="monto">${{ gasto.monto }}</td>
+                <td>
+                    {% if gasto.pagado %}
+                        <span class="badge pagado">Pagado</span>
+                    {% else %}
+                        <span class="badge pendiente">Pendiente</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'detalle_gasto' gasto.pk %}">Ver</a> |
+                    <a href="{% url 'editar_gasto' gasto.pk %}">Editar</a> |
+                    <a href="{% url 'eliminar_gasto' gasto.pk %}" class="texto-rojo">Borrar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="fila-vacia">No hay gastos registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if page_obj.has_other_pages %}
+    <div class="paginacion">
+        <span>Pág. {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+        <div>
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}&q={{ q }}&categoria={{ categoria_filtro }}&pagado={{ pagado_filtro }}">Anterior</a>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}&q={{ q }}&categoria={{ categoria_filtro }}&pagado={{ pagado_filtro }}">Siguiente</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

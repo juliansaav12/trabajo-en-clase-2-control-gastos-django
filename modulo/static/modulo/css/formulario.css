@@ -1,0 +1,66 @@
+.tarjeta-form {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 450px;
+    margin: 20px auto;
+    border-radius: 6px;
+}
+
+.tarjeta-form h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.tarjeta-form p {
+    margin-bottom: 10px;
+}
+
+.tarjeta-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.tarjeta-form input[type="text"],
+.tarjeta-form input[type="number"],
+.tarjeta-form input[type="date"],
+.tarjeta-form select {
+    width: 100%;
+    padding: 6px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.errorlist {
+    color: #d32f2f;
+    list-style: none;
+    padding: 0;
+    margin: 3px 0 0 0;
+    font-size: 13px;
+}
+
+.acciones {
+    margin-top: 15px;
+    display: flex;
+    gap: 8px;
+}
+
+.btn-guardar {
+    background-color: #35ad3b;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-cancelar {
+    background-color: #e0e0e0;
+    color: #333;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+}

@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Control de Gastos{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'modulo/css/base.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <header>
+        <div class="contenedor">
+            <a href="{% url 'lista_gastos' %}" class="logo">Mis Gastos</a>
+            <nav>
+                <a href="{% url 'crear_gasto' %}" class="btn-nuevo">+ Nuevo Gasto</a>
+                <a href="/admin/" target="_blank">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contenedor">
+        {% if messages %}
+            {% for message in messages %}
+                <p class="mensaje">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+</body>
+</html>
